@@ -1,0 +1,631 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agro Match</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #101b13;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 430px;
+}
+
+.logo {
+  text-align: center;
+  color: #7bc943;
+  font-size: 34px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.slogan {
+  text-align: center;
+  color: #bdc9b9;
+  margin-bottom: 28px;
+}
+
+.card {
+  background: #1d2b20;
+  border: 1px solid #405340;
+  border-radius: 18px;
+  padding: 25px 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.description {
+  color: #bdc9b9;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 22px;
+  line-height: 1.5;
+}
+
+input:not([type="checkbox"]) {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 13px;
+  background: #111b13;
+  border: 1px solid #50634e;
+  border-radius: 9px;
+  color: white;
+  font-size: 15px;
+}
+
+input::placeholder {
+  color: #a3ada0;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 9px;
+  background: #72bd3b;
+  color: #10200c;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.secondary {
+  background: transparent;
+  border: 1px solid #72bd3b;
+  color: white;
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #142117;
+  border: 1px solid #50634e;
+  border-radius: 9px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+
+.choice input {
+  width: 20px;
+  height: 20px;
+  accent-color: #72bd3b;
+}
+
+.choice label {
+  font-size: 14px;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  text-align: center;
+  color: #899889;
+  font-size: 12px;
+  margin-top: 25px;
+  line-height: 1.6;
+}
+
+.back {
+  background: transparent;
+  color: #a9d58b;
+  margin-top: 15px;
+}
+  /* AGRO MATCH - VISUAL PREMIUM */
+
+body {
+  background: #102c20;
+  color: #dcebdc;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #17452f;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+h2, h3 {
+  color: #17452f;
+}
+
+button {
+  background: #17452f;
+  color: #ffffff;
+  border: 1px solid #c5a45b;
+  border-radius: 14px;
+  padding: 15px 22px;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(23, 69, 47, 0.18);
+  transition: 0.3s;
+  cursor: pointer;
+  }
+
+button:active {
+  background: #c5a45b;
+  color: #173b29;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 13px;
+  margin: 8px 0;
+  border: 1px solid #d5ddcf;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+section {
+  background: #ffffff;
+  padding: 18px;
+  margin: 18px 0;
+  border-radius: 16px;
+  border: 1px solid #e2e8df;
+  box-shadow: 0 4px 14px rgba(20, 50, 30, 0.06);
+}
+
+footer {
+  color: #647568;
+  text-align: center;
+  padding: 25px;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">🌱 AGRO MATCH</div>
+<p class="slogan">Onde máquinas e oportunidades se encontram.</p>
+
+<!-- LOGIN -->
+
+<div class="card" id="login">
+
+<h2>Bem-vindo ao Agro Match!</h2>
+
+<p class="description">
+Encontre máquinas e oportunidades para o agronegócio.
+</p>
+
+<form onsubmit="entrar(event)">
+
+<input type="email"
+id="emailLogin"
+placeholder="Seu e-mail"
+required>
+
+<input type="password"
+id="senhaLogin"
+placeholder="Sua senha"
+required>
+
+<button type="submit">ENTRAR</button>
+
+</form>
+
+<button class="secondary" onclick="abrirCadastro()">
+CRIAR MINHA CONTA
+</button>
+
+</div>
+
+<!-- CADASTRO -->
+
+<div class="card hidden" id="cadastro">
+
+<h2>Criar minha conta</h2>
+
+<p class="description">
+Faça parte do Agro Match!
+</p>
+
+<form onsubmit="cadastrar(event)">
+
+<input type="text" id="nome"
+placeholder="Nome completo" required>
+
+<input type="email" id="email"
+placeholder="Seu e-mail" required>
+
+<input type="tel" id="telefone"
+placeholder="Telefone / WhatsApp" required>
+
+<input type="password" id="senha"
+placeholder="Crie uma senha (mínimo 6 caracteres)"
+minlength="6" required>
+
+<p class="description">
+Como você pretende utilizar o Agro Match?
+</p>
+
+<div class="choice">
+<input type="checkbox" id="proprietario">
+<label for="proprietario">
+Sou proprietário e quero oferecer máquinas.
+</label>
+</div>
+
+<div class="choice">
+<input type="checkbox" id="cliente">
+<label for="cliente">
+Preciso de máquinas para alugar.
+</label>
+</div>
+
+<button type="submit">FINALIZAR CADASTRO</button>
+
+</form>
+
+<button class="back" onclick="voltarLogin()">
+VOLTAR AO LOGIN
+</button>
+
+</div>
+<div id="inicio" class="hidden">
+
+  <h1>AGRO MATCH 🚜</h1>
+
+  <h2>Do campo para o futuro</h2>
+
+  <p>O que você procura hoje?</p>
+<button onclick="abrirCadastroMaquina()">
+ANUNCIAR MINHA MÁQUINA
+</button>
+  <section>
+    <h3>🚜 Máquinas disponíveis</h3>
+  <div id="listaMaquinas">
+  <p>Carregando máquinas...</p>
+</div>
+
+<button onclick="carregarMaquinas()">
+  ATUALIZAR MÁQUINAS
+</button>
+  </section>
+
+  <section>
+    <h3>🔎 Preciso de uma máquina</h3>
+    <p>Publique sua necessidade e receba propostas.</p>
+  </section>
+
+  <section>
+    <h3>👤 Meu perfil</h3>
+    <p>Publique sua necessidade e receba propostas.</p>
+
+<button onclick="abrirPrecisoMaquina()">
+  PRECISO DE UMA MÁQUINA
+</button>
+  </section>
+
+</div>
+  <div id="cadastroMaquina" class="hidden">
+
+  <h2>🚜 Anunciar minha máquina</h2>
+
+  <form onsubmit="salvarMaquina(event)">
+
+    <input type="text" id="tipoMaquina"
+    placeholder="Tipo de máquina (ex: Trator)"
+    required>
+
+    <input type="text" id="marcaMaquina"
+    placeholder="Marca"
+    required>
+
+    <input type="text" id="modeloMaquina"
+    placeholder="Modelo"
+    required>
+
+    <input type="number" id="valorDiaria"
+    placeholder="Valor da diária em R$"
+    min="1"
+    required>
+
+    <input type="text" id="cidadeMaquina"
+    placeholder="Cidade"
+    required>
+
+    <input type="text" id="estadoMaquina"
+    placeholder="Estado"
+    required>
+
+    <button type="submit">PUBLICAR MÁQUINA</button>
+
+  </form>
+
+  <button class="back" onclick="voltarInicio()">
+    VOLTAR
+  </button>
+
+  </div>
+  <div id="precisoMaquina" class="hidden">
+
+  <h2>🔎 Preciso de uma máquina</h2>
+
+  <form onsubmit="salvarNecessidade(event)">
+
+    <input type="text" id="tipoNecessidade"
+    placeholder="Qual máquina você precisa?"
+    required>
+
+    <input type="text" id="cidadeNecessidade"
+    placeholder="Cidade"
+    required>
+
+    <input type="text" id="estadoNecessidade"
+    placeholder="Estado"
+    required>
+
+    <label>Data de início:</label>
+    <input type="date" id="dataInicio" required>
+
+    <label>Data de término:</label>
+    <input type="date" id="dataFim" required>
+
+    <textarea id="detalhesNecessidade"
+    placeholder="Conte mais detalhes sobre o serviço"></textarea>
+
+    <button type="submit">PUBLICAR NECESSIDADE</button>
+
+  </form>
+
+  <button onclick="voltarInicio()">VOLTAR</button>
+
+  </div>
+<footer>
+AGRO MATCH © 2026<br>
+Tecnologia conectando o agronegócio.
+</footer>
+
+</div>
+
+<script>
+
+function abrirCadastro() {
+document.getElementById("login").classList.add("hidden");
+document.getElementById("cadastro").classList.remove("hidden");
+}
+  
+function voltarLogin() {
+document.getElementById("cadastro").classList.add("hidden");
+document.getElementById("login").classList.remove("hidden");
+}
+function abrirCadastroMaquina() {
+  document.getElementById("inicio").classList.add("hidden");
+  document.getElementById("cadastroMaquina").classList.remove("hidden");
+}
+function abrirPrecisoMaquina() {
+  document.getElementById("inicio").classList.add("hidden");
+  document.getElementById("precisoMaquina").classList.remove("hidden");
+}
+function voltarInicio() {
+  document.getElementById("cadastroMaquina").classList.add("hidden");
+  document.getElementById("precisoMaquina").classList.add("hidden");
+  document.getElementById("inicio").classList.remove("hidden");
+}
+  async function salvarMaquina(event) {
+  event.preventDefault();
+
+  const { data: { user }, error: userError } =
+    await window.supabaseClient.auth.getUser();
+
+  if (userError || !user) {
+    alert("Faça login para anunciar uma máquina.");
+    return;
+  }
+
+  const maquina = {
+    user_id: user.id,
+    tipo: document.getElementById("tipoMaquina").value.trim(),
+    marca: document.getElementById("marcaMaquina").value.trim(),
+    modelo: document.getElementById("modeloMaquina").value.trim(),
+    valor_diaria: Number(document.getElementById("valorDiaria").value),
+    cidade: document.getElementById("cidadeMaquina").value.trim(),
+    estado: document.getElementById("estadoMaquina").value.trim()
+  };
+
+  const { error } = await window.supabaseClient
+    .from("Maquinas")
+    .insert(maquina);
+
+  if (error) {
+    alert("Erro ao publicar máquina: " + error.message);
+    return;
+  }
+
+  alert("Máquina anunciada com sucesso!");
+  document.querySelector("#cadastroMaquina form").reset();
+  voltarInicio();
+  }
+  async function carregarMaquinas() {
+  const lista = document.getElementById("listaMaquinas");
+
+  lista.innerHTML = "<p>Carregando máquinas...</p>";
+
+  const { data, error } = await window.supabaseClient
+    .from("Maquinas")
+    .select("id, tipo, marca, modelo, valor_diaria, cidade, estado")
+    .eq("ativo", true)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    lista.innerHTML = "<p>Erro ao carregar máquinas: " + error.message + "</p>";
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    lista.innerHTML = "<p>Nenhuma máquina anunciada ainda.</p>";
+    return;
+  }
+
+  lista.innerHTML = "";
+
+  data.forEach(maquina => {
+    const card = document.createElement("div");
+
+    card.innerHTML = `
+      <h3>${maquina.tipo}</h3>
+      <p>Marca: ${maquina.marca}</p>
+      <p>Modelo: ${maquina.modelo}</p>
+      <p>Diária: R$ ${Number(maquina.valor_diaria).toFixed(2)}</p>
+      <p>Local: ${maquina.cidade} - ${maquina.estado}</p>
+    `;
+
+    lista.appendChild(card);
+  });
+}
+ async function salvarNecessidade(event) {
+  event.preventDefault();
+
+  const { data: { user }, error: userError } =
+    await window.supabaseClient.auth.getUser();
+
+  if (userError || !user) {
+    alert("Faça login para publicar sua necessidade.");
+    return;
+  }
+
+  const dataInicio = document.getElementById("dataInicio").value;
+  const dataFim = document.getElementById("dataFim").value;
+
+  if (dataFim < dataInicio) {
+    alert("A data final não pode ser anterior à inicial.");
+    return;
+  }
+
+  const necessidade = {
+    user_id: user.id,
+    tipo_maquina: document.getElementById("tipoNecessidade").value.trim(),
+    cidade: document.getElementById("cidadeNecessidade").value.trim(),
+    estado: document.getElementById("estadoNecessidade").value.trim(),
+    data_inicio: dataInicio,
+    data_fim: dataFim,
+    detalhes: document.getElementById("detalhesNecessidade").value.trim()
+  };
+
+  const { error } = await window.supabaseClient
+    .from("Necessidades")
+    .insert(necessidade);
+
+  if (error) {
+    alert("Erro ao publicar: " + error.message);
+    return;
+  }
+
+  alert("Sua necessidade foi publicada com sucesso!");
+  document.querySelector("#precisoMaquina form").reset();
+  voltarInicio();
+        } 
+async function entrar(event) {
+  event.preventDefault();
+
+  const email = document.getElementById("emailLogin").value;
+  const senha = document.getElementById("senhaLogin").value;
+
+  const { data, error } = await window.supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: senha
+  });
+
+  if (error) {
+    alert("Erro ao entrar: " + error.message);
+    return;
+  }
+
+document.getElementById("login").classList.add("hidden");
+document.getElementById("cadastro").classList.add("hidden");
+document.getElementById("inicio").classList.remove("hidden");
+}
+carregarMaquinas();
+async function cadastrar(event) {
+  event.preventDefault();
+
+  const nome = document.getElementById("nome").value;
+  const email = document.getElementById("email").value;
+  const telefone = document.getElementById("telefone").value;
+  const senha = document.getElementById("senha").value;
+
+  const proprietario = document.getElementById("proprietario").checked;
+  const cliente = document.getElementById("cliente").checked;
+
+  if (!proprietario && !cliente) {
+    alert("Selecione pelo menos uma opção.");
+    return;
+  }
+
+  if (!window.supabaseClient) {
+    alert("Conexão com Supabase não encontrada.");
+    return;
+  }
+
+  const tipo_perfil = proprietario && cliente
+    ? "ambos"
+    : proprietario
+      ? "proprietario"
+      : "cliente";
+
+  const { data, error } = await window.supabaseClient.auth.signUp({
+    email: email,
+    password: senha,
+    options: {
+      data: {
+        nome_completo: nome,
+        telefone: telefone,
+        tipo_perfil: tipo_perfil
+      }
+    }
+  });
+
+  if (error) {
+    alert("Erro no cadastro: " + error.message);
+    return;
+  }
+
+  alert("Cadastro realizado! Verifique seu e-mail para confirmar a conta.");
+}
+
+</script>
+  <script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+const SUPABASE_URL = "https://qxltyukmndcrcsrnlulv.supabase.co";
+const SUPABASE_KEY = "sb_publishable_0NdnSoezZmaotDzNj7-j6Q_z5PyqTfe";
+
+const supabaseClient = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+window.supabaseClient = supabaseClient;
+console.log("Agro Match conectado ao Supabase!");
+</script>
+
+</body>
+</html>
