@@ -1,446 +1,563 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agro Match</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agro Match</title>
 
-<style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
 
-body {
-  background: #101b13;
-  color: white;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
+    body {
+      background: #102c20;
+      color: #dcebdc;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+    }
 
-.container {
-  width: 100%;
-  max-width: 430px;
-}
+    .container {
+      width: 100%;
+      max-width: 430px;
+    }
 
-.logo {
-  text-align: center;
-  color: #7bc943;
-  font-size: 34px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+    .logo {
+      text-align: center;
+      color: #7bc943;
+      font-size: 34px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
 
-.slogan {
-  text-align: center;
-  color: #bdc9b9;
-  margin-bottom: 28px;
-}
+    .slogan {
+      text-align: center;
+      color: #bdc9b9;
+      margin-bottom: 28px;
+    }
 
-.card {
-  background: #1d2b20;
-  border: 1px solid #405340;
-  border-radius: 18px;
-  padding: 25px 20px;
-}
+    .card {
+      background: #1d2b20;
+      border: 1px solid #405340;
+      border-radius: 18px;
+      padding: 25px 20px;
+    }
 
-h2 {
-  text-align: center;
-  margin-bottom: 12px;
-}
+    h1 {
+      color: #7bc943;
+      font-size: 30px;
+      font-weight: 800;
+      text-align: center;
+    }
 
-.description {
-  color: #bdc9b9;
-  text-align: center;
-  font-size: 14px;
-  margin-bottom: 22px;
-  line-height: 1.5;
-}
+    h2, h3 {
+      color: #7bc943;
+      margin-bottom: 12px;
+    }
 
-input:not([type="checkbox"]) {
-  width: 100%;
-  padding: 15px;
-  margin-bottom: 13px;
-  background: #111b13;
-  border: 1px solid #50634e;
-  border-radius: 9px;
-  color: white;
-  font-size: 15px;
-}
+    .description {
+      color: #bdc9b9;
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
 
-input::placeholder {
-  color: #a3ada0;
-}
+    input:not([type="checkbox"]),
+    textarea {
+      width: 100%;
+      padding: 13px;
+      margin: 8px 0;
+      border: 1px solid #50634e;
+      border-radius: 10px;
+      background: #111b13;
+      color: white;
+      font-size: 15px;
+    }
 
-button {
-  width: 100%;
-  padding: 15px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 9px;
-  background: #72bd3b;
-  color: #10200c;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
+    input::placeholder,
+    textarea::placeholder {
+      color: #a3ada0;
+    }
 
-.secondary {
-  background: transparent;
-  border: 1px solid #72bd3b;
-  color: white;
-}
+    input[type="date"] {
+      color-scheme: dark;
+    }
 
-.choice {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #142117;
-  border: 1px solid #50634e;
-  border-radius: 9px;
-  padding: 14px;
-  margin-bottom: 10px;
-}
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
 
-.choice input {
-  width: 20px;
-  height: 20px;
-  accent-color: #72bd3b;
-}
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #dcebdc;
+    }
 
-.choice label {
-  font-size: 14px;
-}
+    button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 10px;
+      border: 1px solid #c5a45b;
+      border-radius: 14px;
+      background: #17452f;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+    }
 
-.hidden {
-  display: none;
-}
+    button:active {
+      background: #c5a45b;
+      color: #173b29;
+    }
 
-footer {
-  text-align: center;
-  color: #899889;
-  font-size: 12px;
-  margin-top: 25px;
-  line-height: 1.6;
-}
+    .secondary {
+      background: transparent;
+      border: 1px solid #72bd3b;
+      color: white;
+    }
 
-.back {
-  background: transparent;
-  color: #a9d58b;
-  margin-top: 15px;
-}
-  /* AGRO MATCH - VISUAL PREMIUM */
+    .choice {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #142117;
+      border: 1px solid #50634e;
+      border-radius: 9px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
 
-body {
-  background: #102c20;
-  color: #dcebdc;
-  font-family: Arial, sans-serif;
-}
+    .choice input {
+      width: 20px;
+      height: 20px;
+      accent-color: #72bd3b;
+    }
 
-h1 {
-  color: #17452f;
-  font-size: 30px;
-  font-weight: 800;
-}
+    .choice label {
+      font-size: 14px;
+      margin: 0;
+    }
 
-h2, h3 {
-  color: #17452f;
-}
+    .hidden {
+      display: none !important;
+    }
 
-button {
-  background: #17452f;
-  color: #ffffff;
-  border: 1px solid #c5a45b;
-  border-radius: 14px;
-  padding: 15px 22px;
-  font-weight: bold;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 10px rgba(23, 69, 47, 0.18);
-  transition: 0.3s;
-  cursor: pointer;
-  }
+    section {
+      background: #1d2b20;
+      padding: 18px;
+      margin: 18px 0;
+      border-radius: 16px;
+      border: 1px solid #405340;
+      box-shadow: 0 4px 14px rgba(20, 50, 30, 0.15);
+    }
 
-button:active {
-  background: #c5a45b;
-  color: #173b29;
-}
+    .machine-card,
+    .need-card {
+      background: #142117;
+      border: 1px solid #50634e;
+      border-radius: 10px;
+      padding: 14px;
+      margin: 12px 0;
+      overflow-wrap: anywhere;
+    }
 
-input, textarea {
-  width: 100%;
-  padding: 13px;
-  margin: 8px 0;
-  border: 1px solid #d5ddcf;
-  border-radius: 10px;
-  box-sizing: border-box;
-  background: #ffffff;
-}
+    .machine-card p,
+    .need-card p {
+      margin-top: 7px;
+      color: #dcebdc;
+      font-size: 14px;
+    }
 
-section {
-  background: #ffffff;
-  padding: 18px;
-  margin: 18px 0;
-  border-radius: 16px;
-  border: 1px solid #e2e8df;
-  box-shadow: 0 4px 14px rgba(20, 50, 30, 0.06);
-}
+    footer {
+      text-align: center;
+      color: #899889;
+      font-size: 12px;
+      margin-top: 25px;
+      padding: 25px;
+      line-height: 1.6;
+    }
 
-footer {
-  color: #647568;
-  text-align: center;
-  padding: 25px;
-  }
-</style>
+    .back {
+      background: transparent;
+      color: #a9d58b;
+      margin-top: 15px;
+    }
+  </style>
 </head>
 
 <body>
 
 <div class="container">
 
-<div class="logo">🌱 AGRO MATCH</div>
-<p class="slogan">Onde máquinas e oportunidades se encontram.</p>
+  <div class="logo">🌱 AGRO MATCH</div>
+  <p class="slogan">Onde máquinas e oportunidades se encontram.</p>
 
-<!-- LOGIN -->
+  <!-- LOGIN -->
 
-<div class="card" id="login">
+  <div class="card" id="login">
 
-<h2>Bem-vindo ao Agro Match!</h2>
+    <h2>Bem-vindo ao Agro Match!</h2>
 
-<p class="description">
-Encontre máquinas e oportunidades para o agronegócio.
-</p>
+    <p class="description">
+      Encontre máquinas e oportunidades para o agronegócio.
+    </p>
 
-<form onsubmit="entrar(event)">
+    <form onsubmit="entrar(event)">
 
-<input type="email"
-id="emailLogin"
-placeholder="Seu e-mail"
-required>
+      <input
+        type="email"
+        id="emailLogin"
+        placeholder="Seu e-mail"
+        required
+      >
 
-<input type="password"
-id="senhaLogin"
-placeholder="Sua senha"
-required>
+      <input
+        type="password"
+        id="senhaLogin"
+        placeholder="Sua senha"
+        required
+      >
 
-<button type="submit">ENTRAR</button>
+      <button type="submit">ENTRAR</button>
 
-</form>
+    </form>
 
-<button class="secondary" onclick="abrirCadastro()">
-CRIAR MINHA CONTA
-</button>
+    <button class="secondary" onclick="abrirCadastro()">
+      CRIAR MINHA CONTA
+    </button>
 
-</div>
-
-<!-- CADASTRO -->
-
-<div class="card hidden" id="cadastro">
-
-<h2>Criar minha conta</h2>
-
-<p class="description">
-Faça parte do Agro Match!
-</p>
-
-<form onsubmit="cadastrar(event)">
-
-<input type="text" id="nome"
-placeholder="Nome completo" required>
-
-<input type="email" id="email"
-placeholder="Seu e-mail" required>
-
-<input type="tel" id="telefone"
-placeholder="Telefone / WhatsApp" required>
-
-<input type="password" id="senha"
-placeholder="Crie uma senha (mínimo 6 caracteres)"
-minlength="6" required>
-
-<p class="description">
-Como você pretende utilizar o Agro Match?
-</p>
-
-<div class="choice">
-<input type="checkbox" id="proprietario">
-<label for="proprietario">
-Sou proprietário e quero oferecer máquinas.
-</label>
-</div>
-
-<div class="choice">
-<input type="checkbox" id="cliente">
-<label for="cliente">
-Preciso de máquinas para alugar.
-</label>
-</div>
-
-<button type="submit">FINALIZAR CADASTRO</button>
-
-</form>
-
-<button class="back" onclick="voltarLogin()">
-VOLTAR AO LOGIN
-</button>
-
-</div>
-<div id="inicio" class="hidden">
-  <h1>AGRO MATCH 🚜</h1>
-
-  <h2>Do campo para o futuro</h2>
-
-  <p>O que você procura hoje?</p>
-  <section>
-
-    <h3>🚜 Máquinas disponíveis</h3>
-  <div id="listaMaquinas">
-  <p>Carregando máquinas...</p>
-</div>
-<section>
-  <h3>📋 Clientes procurando máquinas</h3>
-
-  <div id="listaNecessidades">
-    <p>Carregando solicitações...</p>
   </div>
-</section>
-<button onclick="carregarMaquinas()">
-  ATUALIZAR MÁQUINAS
-</button>
 
-  <section>
-    <button onclick="precisodeumamaquina()">
-    <h3>🔎 Preciso de uma máquina</h3>
-    <p>Publique sua necessidade e receba propostas.</p>
-  </section>
+  <!-- CADASTRO -->
 
-  <section>
-    <h3>👤 Meu perfil</h3>
-    <p>Publique sua necessidade e receba propostas.</p>
+  <div class="card hidden" id="cadastro">
 
-<button onclick="abrirPrecisoMaquina()">
-  PRECISO DE UMA MÁQUINA
-</button>
-  </section>
-<section>
- <button onclick="carregarMaquinas()">
-  ATUALIZAR MÁQUINAS
-</button>
-</section>
-</div>
+    <h2>Criar minha conta</h2>
+
+    <p class="description">Faça parte do Agro Match!</p>
+
+    <form onsubmit="cadastrar(event)">
+
+      <input
+        type="text"
+        id="nome"
+        placeholder="Nome completo"
+        required
+      >
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Seu e-mail"
+        required
+      >
+
+      <input
+        type="tel"
+        id="telefone"
+        placeholder="Telefone / WhatsApp"
+        required
+      >
+
+      <input
+        type="password"
+        id="senha"
+        placeholder="Crie uma senha (mínimo 6 caracteres)"
+        minlength="6"
+        required
+      >
+
+      <p class="description">
+        Como você pretende utilizar o Agro Match?
+      </p>
+
+      <div class="choice">
+        <input type="checkbox" id="proprietario">
+        <label for="proprietario">
+          Sou proprietário e quero oferecer máquinas.
+        </label>
+      </div>
+
+      <div class="choice">
+        <input type="checkbox" id="cliente">
+        <label for="cliente">
+          Preciso de máquinas para alugar.
+        </label>
+      </div>
+
+      <button type="submit">FINALIZAR CADASTRO</button>
+
+    </form>
+
+    <button class="back" onclick="voltarLogin()">
+      VOLTAR AO LOGIN
+    </button>
+
+  </div>
+
+  <!-- INÍCIO -->
+
+  <div id="inicio" class="hidden">
+
+    <h1>AGRO MATCH 🚜</h1>
+
+    <h2>Do campo para o futuro</h2>
+
+    <p>O que você procura hoje?</p>
+
+    <button onclick="abrirCadastroMaquina()">
+      ANUNCIAR MINHA MÁQUINA
+    </button>
+
+    <!-- MÁQUINAS DISPONÍVEIS -->
+
+    <section>
+
+      <h3>🚜 Máquinas disponíveis</h3>
+
+      <div id="listaMaquinas">
+        <p>Carregando máquinas...</p>
+      </div>
+
+      <button onclick="carregarMaquinas()">
+        ATUALIZAR MÁQUINAS
+      </button>
+
+    </section>
+
+    <!-- CLIENTES PROCURANDO MÁQUINAS -->
+
+    <section>
+
+      <h3>📋 Clientes procurando máquinas</h3>
+
+      <div id="listaNecessidades">
+        <p>Carregando solicitações...</p>
+      </div>
+
+      <button onclick="carregarNecessidades()">
+        ATUALIZAR SOLICITAÇÕES
+      </button>
+
+    </section>
+
+    <!-- PRECISO DE UMA MÁQUINA -->
+
+    <section>
+
+      <h3>🔎 Preciso de uma máquina</h3>
+
+      <p>Publique sua necessidade e receba propostas.</p>
+
+      <button onclick="abrirPrecisoMaquina()">
+        PRECISO DE UMA MÁQUINA
+      </button>
+
+    </section>
+
+    <!-- MEU PERFIL -->
+
+    <section>
+
+      <h3>👤 Meu perfil</h3>
+
+      <p>Área do usuário Agro Match.</p>
+
+    </section>
+
+  </div>
+
+  <!-- CADASTRO DE MÁQUINA -->
+
   <div id="cadastroMaquina" class="hidden">
 
-  <h2>🚜 Anunciar minha máquina</h2>
+    <h2>🚜 Anunciar minha máquina</h2>
 
-  <form onsubmit="salvarMaquina(event)">
+    <form onsubmit="salvarMaquina(event)">
 
-    <input type="text" id="tipoMaquina"
-    placeholder="Tipo de máquina (ex: Trator)"
-    required>
+      <input
+        type="text"
+        id="tipoMaquina"
+        placeholder="Tipo de máquina (ex: Trator)"
+        required
+      >
 
-    <input type="text" id="marcaMaquina"
-    placeholder="Marca"
-    required>
+      <input
+        type="text"
+        id="marcaMaquina"
+        placeholder="Marca"
+        required
+      >
 
-    <input type="text" id="modeloMaquina"
-    placeholder="Modelo"
-    required>
+      <input
+        type="text"
+        id="modeloMaquina"
+        placeholder="Modelo"
+        required
+      >
 
-    <input type="number" id="valorDiaria"
-    placeholder="Valor da diária em R$"
-    min="1"
-    required>
+      <input
+        type="number"
+        id="valorDiaria"
+        placeholder="Valor da diária em R$"
+        min="1"
+        required
+      >
 
-    <input type="text" id="cidadeMaquina"
-    placeholder="Cidade"
-    required>
+      <input
+        type="text"
+        id="cidadeMaquina"
+        placeholder="Cidade"
+        required
+      >
 
-    <input type="text" id="estadoMaquina"
-    placeholder="Estado"
-    required>
+      <input
+        type="text"
+        id="estadoMaquina"
+        placeholder="Estado"
+        required
+      >
 
-    <button type="submit">PUBLICAR MÁQUINA</button>
+      <button type="submit">PUBLICAR MÁQUINA</button>
 
-  </form>
+    </form>
 
-  <button class="back" onclick="voltarInicio()">
-    VOLTAR
-  </button>
-</section>
+    <button class="back" onclick="voltarInicio()">
+      VOLTAR
+    </button>
+
   </div>
-  <h2>🔎 Preciso de uma máquina</h2>
+
+  <!-- FORMULÁRIO DE NECESSIDADE -->
+
   <div id="precisoMaquina" class="hidden">
-    
-  <form onsubmit="salvarNecessidade(event)">
-    
-    <input type="text" id="tipoNecessidade"
-    placeholder="Qual máquina você precisa?"
-    required>
 
-    <input type="text" id="cidadeNecessidade"
-    placeholder="Cidade"
-    required>
+    <h2>🔎 Preciso de uma máquina</h2>
 
-    <input type="text" id="estadoNecessidade"
-    placeholder="Estado"
-    required>
+    <form onsubmit="salvarNecessidade(event)">
 
-    <label>Data de início:</label>
-    <input type="date" id="dataInicio" required>
+      <input
+        type="text"
+        id="tipoNecessidade"
+        placeholder="Qual máquina você precisa?"
+        required
+      >
 
-    <label>Data de término:</label>
-    <input type="date" id="dataFim" required>
+      <input
+        type="text"
+        id="cidadeNecessidade"
+        placeholder="Cidade"
+        required
+      >
 
-    <textarea id="detalhesNecessidade"
-    placeholder="Conte mais detalhes sobre o serviço"></textarea>
+      <input
+        type="text"
+        id="estadoNecessidade"
+        placeholder="Estado"
+        required
+      >
 
-    <button type="submit">PUBLICAR NECESSIDADE</button>
-  </form>
+      <label>Data de início:</label>
 
-  <button onclick="voltarInicio()">VOLTAR</button>
+      <input
+        type="date"
+        id="dataInicio"
+        required
+      >
+
+      <label>Data de término:</label>
+
+      <input
+        type="date"
+        id="dataFim"
+        required
+      >
+
+      <textarea
+        id="detalhesNecessidade"
+        placeholder="Conte mais detalhes sobre o serviço"
+      ></textarea>
+
+      <button type="submit">PUBLICAR NECESSIDADE</button>
+
+    </form>
+
+    <button class="back" onclick="voltarInicio()">
+      VOLTAR
+    </button>
 
   </div>
-<footer>
-AGRO MATCH © 2026<br>
-Tecnologia conectando o agronegócio.
-</footer>
+
+  <footer>
+    AGRO MATCH © 2026<br>
+    Tecnologia conectando o agronegócio.
+  </footer>
 
 </div>
+
+<!-- JAVASCRIPT PRINCIPAL -->
 
 <script>
 
 function abrirCadastro() {
-document.getElementById("login").classList.add("hidden");
-document.getElementById("cadastro").classList.remove("hidden");
+  document.getElementById("login").classList.add("hidden");
+  document.getElementById("cadastro").classList.remove("hidden");
 }
-  
+
 function voltarLogin() {
-document.getElementById("cadastro").classList.add("hidden");
-document.getElementById("login").classList.remove("hidden");
+  document.getElementById("cadastro").classList.add("hidden");
+  document.getElementById("login").classList.remove("hidden");
 }
+
 function abrirCadastroMaquina() {
   document.getElementById("inicio").classList.add("hidden");
   document.getElementById("cadastroMaquina").classList.remove("hidden");
 }
+
 function abrirPrecisoMaquina() {
   document.getElementById("inicio").classList.add("hidden");
   document.getElementById("precisoMaquina").classList.remove("hidden");
 }
+
 function voltarInicio() {
   document.getElementById("cadastroMaquina").classList.add("hidden");
   document.getElementById("precisoMaquina").classList.add("hidden");
   document.getElementById("inicio").classList.remove("hidden");
 }
-  async function salvarMaquina(event) {
+
+// VERIFICAR CONEXÃO
+
+function obterSupabase() {
+  if (!window.supabaseClient) {
+    alert("A conexão com o Supabase ainda não está pronta. Tente novamente.");
+    return null;
+  }
+
+  return window.supabaseClient;
+}
+
+// CADASTRAR MÁQUINA
+
+async function salvarMaquina(event) {
   event.preventDefault();
 
+  const supabase = obterSupabase();
+  if (!supabase) return;
+
   const { data: { user }, error: userError } =
-    await window.supabaseClient.auth.getUser();
+    await supabase.auth.getUser();
 
   if (userError || !user) {
     alert("Faça login para anunciar uma máquina.");
@@ -457,7 +574,7 @@ function voltarInicio() {
     estado: document.getElementById("estadoMaquina").value.trim()
   };
 
-  const { error } = await window.supabaseClient
+  const { error } = await supabase
     .from("Maquinas")
     .insert(maquina);
 
@@ -467,103 +584,79 @@ function voltarInicio() {
   }
 
   alert("Máquina anunciada com sucesso!");
+
   document.querySelector("#cadastroMaquina form").reset();
+
   voltarInicio();
-  }
-  async function carregarMaquinas() {
-    window.carregarMaquinas = carregarMaquinas;
+
+  await carregarMaquinas();
+}
+
+// CARREGAR MÁQUINAS
+
+async function carregarMaquinas() {
+  const supabase = obterSupabase();
+  if (!supabase) return;
+
   const lista = document.getElementById("listaMaquinas");
 
-  lista.innerHTML = "<p>Carregando máquinas...</p>";
+  lista.textContent = "Carregando máquinas...";
 
-  const { data, error } = await window.supabaseClient
+  const { data, error } = await supabase
     .from("Maquinas")
     .select("id, tipo, marca, modelo, valor_diaria, cidade, estado")
     .eq("ativo", true)
     .order("created_at", { ascending: false });
 
   if (error) {
-    lista.innerHTML = "<p>Erro ao carregar máquinas: " + error.message + "</p>";
-    return;
-  }
-window.carregarMaquinas = carregarMaquinas;
-  if (!data || data.length === 0) {
-    lista.innerHTML = "<p>Nenhuma máquina anunciada ainda.</p>";
+    lista.textContent = "Erro ao carregar máquinas: " + error.message;
     return;
   }
 
   lista.innerHTML = "";
+
+  if (!data || data.length === 0) {
+    lista.textContent = "Nenhuma máquina anunciada ainda.";
+    return;
+  }
 
   data.forEach(maquina => {
-    const card = document.createElement("div");
-
-    card.innerHTML = `
-      <h3>${maquina.tipo}</h3>
-      <p>Marca: ${maquina.marca}</p>
-      <p>Modelo: ${maquina.modelo}</p>
-      <p>Diária: R$ ${Number(maquina.valor_diaria).toFixed(2)}</p>
-      <p>Local: ${maquina.cidade} - ${maquina.estado}</p>
-    `;
-
-    lista.appendChild(card);
-  });
-}
- 
-async function carregarNecessidades() {
-  const lista = document.getElementById("listaNecessidades");
-
-  if (!window.supabaseClient) {
-    lista.textContent = "Conectando ao sistema...";
-    return;
-  }
-
-  lista.textContent = "Carregando solicitações...";
-
-  const { data, error } = await window.supabaseClient
-    .from("Necessidades")
-    .select("tipo_maquina, cidade, estado, data_inicio, data_fim, detalhes")
-    .order("data_inicio", { ascending: true });
-
-  if (error) {
-    lista.textContent = "Erro ao carregar solicitações: " + error.message;
-    return;
-  }
-
-  if (!data || data.length === 0) {
-    lista.textContent = "Nenhum cliente procurando máquinas ainda.";
-    return;
-  }
-
-  lista.innerHTML = "";
-
-  data.forEach(necessidade => {
     const card = document.createElement("div");
     card.className = "machine-card";
 
     const titulo = document.createElement("h3");
-    titulo.textContent = "🔎 " + necessidade.tipo_maquina;
+    titulo.textContent = maquina.tipo;
+
+    const marca = document.createElement("p");
+    marca.textContent = "Marca: " + maquina.marca;
+
+    const modelo = document.createElement("p");
+    modelo.textContent = "Modelo: " + maquina.modelo;
+
+    const valor = document.createElement("p");
+    valor.textContent =
+      "Diária: R$ " + Number(maquina.valor_diaria).toFixed(2);
 
     const local = document.createElement("p");
-    local.textContent = "Local: " + necessidade.cidade + " - " + necessidade.estado;
+    local.textContent =
+      "Local: " + maquina.cidade + " - " + maquina.estado;
 
-    const inicio = document.createElement("p");
-    inicio.textContent = "Início: " + necessidade.data_inicio;
+    card.append(titulo, marca, modelo, valor, local);
 
-    const fim = document.createElement("p");
-    fim.textContent = "Término: " + necessidade.data_fim;
-
-    const detalhes = document.createElement("p");
-    detalhes.textContent = "Detalhes: " + (necessidade.detalhes || "Não informado");
-
-    card.append(titulo, local, inicio, fim, detalhes);
     lista.appendChild(card);
   });
 }
+
+// PUBLICAR NECESSIDADE
+
 async function salvarNecessidade(event) {
   event.preventDefault();
 
+  const supabase = obterSupabase();
+  if (!supabase) return;
+
   const { data: { user }, error: userError } =
-    await window.supabaseClient.auth.getUser();
+    await supabase.auth.getUser();
 
   if (userError || !user) {
     alert("Faça login para publicar sua necessidade.");
@@ -588,7 +681,7 @@ async function salvarNecessidade(event) {
     detalhes: document.getElementById("detalhesNecessidade").value.trim()
   };
 
-  const { error } = await window.supabaseClient
+  const { error } = await supabase
     .from("Necessidades")
     .insert(necessidade);
 
@@ -598,16 +691,80 @@ async function salvarNecessidade(event) {
   }
 
   alert("Sua necessidade foi publicada com sucesso!");
+
   document.querySelector("#precisoMaquina form").reset();
+
   voltarInicio();
-        } 
+
+  await carregarNecessidades();
+}
+
+// CARREGAR NECESSIDADES
+
+async function carregarNecessidades() {
+  const supabase = obterSupabase();
+  if (!supabase) return;
+
+  const lista = document.getElementById("listaNecessidades");
+
+  lista.textContent = "Carregando solicitações...";
+
+  const { data, error } = await supabase
+    .from("Necessidades")
+    .select("tipo_maquina, cidade, estado, data_inicio, data_fim, detalhes")
+    .order("data_inicio", { ascending: true });
+
+  if (error) {
+    lista.textContent = "Erro ao carregar solicitações: " + error.message;
+    return;
+  }
+
+  lista.innerHTML = "";
+
+  if (!data || data.length === 0) {
+    lista.textContent =
+      "Nenhum cliente procurando máquinas no momento.";
+    return;
+  }
+
+  data.forEach(necessidade => {
+    const card = document.createElement("div");
+    card.className = "need-card";
+
+    const titulo = document.createElement("h3");
+    titulo.textContent = necessidade.tipo_maquina;
+
+    const local = document.createElement("p");
+    local.textContent =
+      "Local: " + necessidade.cidade + " - " + necessidade.estado;
+
+    const periodo = document.createElement("p");
+    periodo.textContent =
+      "Período: " + necessidade.data_inicio +
+      " até " + necessidade.data_fim;
+
+    const detalhes = document.createElement("p");
+    detalhes.textContent =
+      "Detalhes: " + (necessidade.detalhes || "Não informado");
+
+    card.append(titulo, local, periodo, detalhes);
+
+    lista.appendChild(card);
+  });
+}
+
+// LOGIN
+
 async function entrar(event) {
   event.preventDefault();
 
-  const email = document.getElementById("emailLogin").value;
+  const supabase = obterSupabase();
+  if (!supabase) return;
+
+  const email = document.getElementById("emailLogin").value.trim();
   const senha = document.getElementById("senhaLogin").value;
 
-  const { data, error } = await window.supabaseClient.auth.signInWithPassword({
+  const { error } = await supabase.auth.signInWithPassword({
     email: email,
     password: senha
   });
@@ -617,17 +774,25 @@ async function entrar(event) {
     return;
   }
 
-document.getElementById("login").classList.add("hidden");
-document.getElementById("cadastro").classList.add("hidden");
-document.getElementById("inicio").classList.remove("hidden");
+  document.getElementById("login").classList.add("hidden");
+  document.getElementById("cadastro").classList.add("hidden");
+  document.getElementById("inicio").classList.remove("hidden");
+
+  await carregarMaquinas();
+  await carregarNecessidades();
 }
-carregarMaquinas();
+
+// CADASTRO DE USUÁRIO
+
 async function cadastrar(event) {
   event.preventDefault();
 
-  const nome = document.getElementById("nome").value;
-  const email = document.getElementById("email").value;
-  const telefone = document.getElementById("telefone").value;
+  const supabase = obterSupabase();
+  if (!supabase) return;
+
+  const nome = document.getElementById("nome").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const telefone = document.getElementById("telefone").value.trim();
   const senha = document.getElementById("senha").value;
 
   const proprietario = document.getElementById("proprietario").checked;
@@ -638,18 +803,13 @@ async function cadastrar(event) {
     return;
   }
 
-  if (!window.supabaseClient) {
-    alert("Conexão com Supabase não encontrada.");
-    return;
-  }
-
   const tipo_perfil = proprietario && cliente
     ? "ambos"
     : proprietario
       ? "proprietario"
       : "cliente";
 
-  const { data, error } = await window.supabaseClient.auth.signUp({
+  const { error } = await supabase.auth.signUp({
     email: email,
     password: senha,
     options: {
@@ -669,21 +829,41 @@ async function cadastrar(event) {
   alert("Cadastro realizado! Verifique seu e-mail para confirmar a conta.");
 }
 
+// DISPONIBILIZAR FUNÇÕES PARA OS BOTÕES HTML
+
+window.abrirCadastro = abrirCadastro;
+window.voltarLogin = voltarLogin;
+window.abrirCadastroMaquina = abrirCadastroMaquina;
+window.abrirPrecisoMaquina = abrirPrecisoMaquina;
+window.voltarInicio = voltarInicio;
+window.salvarMaquina = salvarMaquina;
+window.carregarMaquinas = carregarMaquinas;
+window.salvarNecessidade = salvarNecessidade;
+window.carregarNecessidades = carregarNecessidades;
+window.entrar = entrar;
+window.cadastrar = cadastrar;
+
 </script>
-  <script type="module">
+
+<!-- CONEXÃO SUPABASE -->
+
+<script type="module">
+
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const SUPABASE_URL = "https://qxltyukmndcrcsrnlulv.supabase.co";
+
 const SUPABASE_KEY = "sb_publishable_0NdnSoezZmaotDzNj7-j6Q_z5PyqTfe";
 
 const supabaseClient = createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
+
 window.supabaseClient = supabaseClient;
-window.carregarMaquinas();
-    
+
 console.log("Agro Match conectado ao Supabase!");
+
 </script>
 
 </body>
