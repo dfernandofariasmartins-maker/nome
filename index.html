@@ -466,6 +466,7 @@ function voltarInicio() {
   voltarInicio();
   }
   async function carregarMaquinas() {
+    window.carregarMaquinas = carregarMaquinas;
   const lista = document.getElementById("listaMaquinas");
 
   lista.innerHTML = "<p>Carregando máquinas...</p>";
