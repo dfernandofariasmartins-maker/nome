@@ -291,7 +291,17 @@ VOLTAR AO LOGIN
 
 </div>
 <div id="inicio" class="hidden">
+<section>
+  <h3>📋 Clientes procurando máquinas</h3>
 
+  <div id="listaNecessidades">
+    <p>Carregando solicitações...</p>
+  </div>
+
+  <button onclick="carregarNecessidades()">
+    ATUALIZAR SOLICITAÇÕES
+  </button>
+</section>
   <h1>AGRO MATCH 🚜</h1>
 
   <h2>Do campo para o futuro</h2>
@@ -369,17 +379,6 @@ ANUNCIAR MINHA MÁQUINA
   <div id="precisoMaquina" class="hidden">
 
   <h2>🔎 Preciso de uma máquina</h2>
-<section>
-  <h3>📋 Clientes procurando máquinas</h3>
-
-  <div id="listaNecessidades">
-    <p>Carregando solicitações...</p>
-  </div>
-
-  <button onclick="carregarNecessidades()">
-    ATUALIZAR SOLICITAÇÕES
-  </button>
-</section>
 
   <form onsubmit="salvarNecessidade(event)">
 
@@ -514,7 +513,58 @@ function voltarInicio() {
     lista.appendChild(card);
   });
 }
- async function salvarNecessidade(event) {
+ 
+async function carregarNecessidades() {
+  const lista = document.getElementById("listaNecessidades");
+
+  if (!window.supabaseClient) {
+    lista.textContent = "Conectando ao sistema...";
+    return;
+  }
+
+  lista.textContent = "Carregando solicitações...";
+
+  const { data, error } = await window.supabaseClient
+    .from("Necessidades")
+    .select("tipo_maquina, cidade, estado, data_inicio, data_fim, detalhes")
+    .order("data_inicio", { ascending: true });
+
+  if (error) {
+    lista.textContent = "Erro ao carregar solicitações: " + error.message;
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    lista.textContent = "Nenhum cliente procurando máquinas ainda.";
+    return;
+  }
+
+  lista.innerHTML = "";
+
+  data.forEach(necessidade => {
+    const card = document.createElement("div");
+    card.className = "machine-card";
+
+    const titulo = document.createElement("h3");
+    titulo.textContent = "🔎 " + necessidade.tipo_maquina;
+
+    const local = document.createElement("p");
+    local.textContent = "Local: " + necessidade.cidade + " - " + necessidade.estado;
+
+    const inicio = document.createElement("p");
+    inicio.textContent = "Início: " + necessidade.data_inicio;
+
+    const fim = document.createElement("p");
+    fim.textContent = "Término: " + necessidade.data_fim;
+
+    const detalhes = document.createElement("p");
+    detalhes.textContent = "Detalhes: " + (necessidade.detalhes || "Não informado");
+
+    card.append(titulo, local, inicio, fim, detalhes);
+    lista.appendChild(card);
+  });
+}
+async function salvarNecessidade(event) {
   event.preventDefault();
 
   const { data: { user }, error: userError } =
