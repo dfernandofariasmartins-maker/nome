@@ -316,7 +316,6 @@ ANUNCIAR MINHA MÁQUINA
   <p>Carregando máquinas...</p>
 </div>
 
-<button onclick="carregarMaquinas()">
   ATUALIZAR MÁQUINAS
 </button>
   </section>
@@ -491,7 +490,7 @@ function voltarInicio() {
     lista.innerHTML = "<p>Erro ao carregar máquinas: " + error.message + "</p>";
     return;
   }
-
+window.carregarMaquinas = carregarMaquinas;
   if (!data || data.length === 0) {
     lista.innerHTML = "<p>Nenhuma máquina anunciada ainda.</p>";
     return;
