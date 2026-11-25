@@ -973,7 +973,7 @@ async function carregarMaquinas() {
 
   const { data, error } = await supabase
     .from("Maquinas")
-    .select("id, tipo, marca, modelo, valor_diaria, cidade, estado")
+   .select("id, tipo, marca, modelo, valor_diaria, cidade, estado, foto_url")
     .eq("ativo", true)
     .order("created_at", { ascending: false });
 
@@ -992,6 +992,20 @@ async function carregarMaquinas() {
   data.forEach(maquina => {
     const card = document.createElement("div");
     card.className = "machine-card";
+    
+    if (maquina.foto_url) {
+  const imagem = document.createElement("img");
+
+  imagem.src = maquina.foto_url;
+  imagem.alt = "Foto de " + maquina.tipo;
+  imagem.style.width = "100%";
+  imagem.style.height = "190px";
+  imagem.style.objectFit = "cover";
+  imagem.style.borderRadius = "12px";
+  imagem.style.marginBottom = "15px";
+
+  card.appendChild(imagem);
+}
 
     const titulo = document.createElement("h3");
     titulo.textContent = maquina.tipo;
