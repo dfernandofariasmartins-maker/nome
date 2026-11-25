@@ -751,6 +751,14 @@ footer {
         required
       >
 
+<label for="fotoMaquina">Foto da máquina</label>
+
+<input
+  type="file"
+  id="fotoMaquina"
+  accept="image/*"
+>
+
       <button type="submit">PUBLICAR MÁQUINA</button>
 
     </form>
@@ -871,6 +879,7 @@ function obterSupabase() {
 
 // CADASTRAR MÁQUINA
 
+
 async function salvarMaquina(event) {
   event.preventDefault();
 
@@ -885,6 +894,44 @@ async function salvarMaquina(event) {
     return;
   }
 
+  const foto = document.getElementById("fotoMaquina").files[0];
+  let fotoUrl = null;
+
+  if (foto) {
+    if (!foto.type.startsWith("image/")) {
+      alert("Selecione um arquivo de imagem.");
+      return;
+    }
+
+    if (foto.size > 5 * 1024 * 1024) {
+      alert("A foto deve ter no máximo 5 MB.");
+      return;
+    }
+
+    const extensao = foto.name.split(".").pop().toLowerCase();
+    const caminho = user.id + "/" + Date.now() + "." + extensao;
+
+    const { error: uploadError } = await supabase
+      .storage
+      .from("maquinas")
+      .upload(caminho, foto, {
+        cacheControl: "3600",
+        upsert: false
+      });
+
+    if (uploadError) {
+      alert("Erro ao enviar foto: " + uploadError.message);
+      return;
+    }
+
+    const { data: urlData } = supabase
+      .storage
+      .from("maquinas")
+      .getPublicUrl(caminho);
+
+    fotoUrl = urlData.publicUrl;
+  }
+
   const maquina = {
     user_id: user.id,
     tipo: document.getElementById("tipoMaquina").value.trim(),
@@ -892,7 +939,8 @@ async function salvarMaquina(event) {
     modelo: document.getElementById("modeloMaquina").value.trim(),
     valor_diaria: Number(document.getElementById("valorDiaria").value),
     cidade: document.getElementById("cidadeMaquina").value.trim(),
-    estado: document.getElementById("estadoMaquina").value.trim()
+    estado: document.getElementById("estadoMaquina").value.trim(),
+    foto_url: fotoUrl
   };
 
   const { error } = await supabase
