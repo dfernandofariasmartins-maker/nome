@@ -963,22 +963,29 @@ async function salvarMaquina(event) {
 
 // CARREGAR MÁQUINAS
 
+
 async function carregarMaquinas() {
   const supabase = obterSupabase();
   if (!supabase) return;
 
   const lista = document.getElementById("listaMaquinas");
 
+  if (!lista) {
+    console.error("Elemento listaMaquinas não encontrado.");
+    return;
+  }
+
   lista.textContent = "Carregando máquinas...";
 
   const { data, error } = await supabase
     .from("Maquinas")
-   .select("id, tipo, marca, modelo, valor_diaria, cidade, estado, foto_url")
+    .select("id, tipo, marca, modelo, valor_diaria, cidade, estado, foto_url")
     .eq("ativo", true)
     .order("created_at", { ascending: false });
 
   if (error) {
     lista.textContent = "Erro ao carregar máquinas: " + error.message;
+    console.error(error);
     return;
   }
 
@@ -992,20 +999,33 @@ async function carregarMaquinas() {
   data.forEach(maquina => {
     const card = document.createElement("div");
     card.className = "machine-card";
-    if (maquina.foto_url) {
-  const imagem = document.createElement("img");
 
-  imagem.src = maquina.foto_url;
-  imagem.alt = "Foto de " + maquina.tipo;
-  imagem.style.width = "100%";
-  imagem.style.height = "190px";
-  imagem.style.objectFit = "cover";
-  imagem.style.borderRadius = "12px";
-  imagem.style.marginBottom = "15px";
+    // FOTO DA MÁQUINA
+    if (maquina.foto_url && maquina.foto_url.trim() !== "") {
+      const imagem = document.createElement("img");
 
-  card.appendChild(imagem);
-}
-    
+      imagem.src = maquina.foto_url.trim();
+      imagem.alt = "Foto de " + maquina.tipo;
+      imagem.loading = "lazy";
+
+      imagem.style.display = "block";
+      imagem.style.width = "100%";
+      imagem.style.height = "190px";
+      imagem.style.objectFit = "cover";
+      imagem.style.borderRadius = "12px";
+      imagem.style.marginBottom = "15px";
+
+      imagem.onerror = function() {
+        imagem.style.display = "none";
+
+        const aviso = document.createElement("p");
+        aviso.textContent = "Não foi possível carregar a foto.";
+        card.insertBefore(aviso, card.firstChild);
+      };
+
+      card.appendChild(imagem);
+    }
+
     const titulo = document.createElement("h3");
     titulo.textContent = maquina.tipo;
 
