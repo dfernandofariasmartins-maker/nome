@@ -451,6 +451,54 @@ footer {
   }
 }
 
+  
+/* CARTÕES PREMIUM DAS MÁQUINAS */
+
+.machine-card {
+  background: linear-gradient(145deg, #173525, #10271b);
+  border: 1px solid rgba(164, 195, 155, 0.20);
+  border-radius: 18px;
+  padding: 22px;
+  margin: 15px 0;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.machine-card:hover {
+  transform: translateY(-4px);
+  border-color: #80c94b;
+}
+
+.machine-card h3 {
+  color: #a4df70;
+  font-size: 21px;
+  margin-bottom: 15px;
+}
+
+.machine-card p {
+  color: #d5dfd2;
+  font-size: 14px;
+  margin: 9px 0;
+  line-height: 1.5;
+}
+
+.machine-card p:nth-of-type(3) {
+  color: #a4df70;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+#listaMaquinas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  #listaMaquinas {
+    grid-template-columns: 1fr;
+  }
+}
+
 </style>
 </head>
 
